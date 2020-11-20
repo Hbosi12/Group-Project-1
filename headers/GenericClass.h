@@ -7,23 +7,28 @@ class GenericInformation
 {
 public:
 	int initialBalance;
-	double annualInterestRate;
+	float annualInterestRate;
 	int totalAmtOfMonthlyDeposit;
 	double depositAmt;
 
 	GenericInformation()
 	{
 		this->initialBalance = 0;
-		this->annualInterestRate = 0.06;
+		this->annualInterestRate = 0.061f;
 		this->totalAmtOfMonthlyDeposit = totalAmtOfMonthlyDeposit;
-		this->depositAmt = depositAmt;
+		this->depositAmt = 0.00;
 	}
-	GenericInformation(int intialBalance, double annualInterestRate, double depositAmt)
+	GenericInformation(int initialBalance, double annualInterestRate, double depositAmt)
 	{
 		this->initialBalance = 0;
 		this->annualInterestRate = 0.06;
 		this->totalAmtOfMonthlyDeposit = totalAmtOfMonthlyDeposit;
 		this->depositAmt = depositAmt;
+	}
+
+	int getTotalAmtOfMonthlyDeposit(double)
+	{
+		return this->totalAmtOfMonthlyDeposit;
 	}
 
 	int getInitialBalance()
@@ -38,8 +43,9 @@ public:
 
 	double getUpdatedBalanceWithDeposits()
 	{
-		double updatedbalance = this->initialBalance + depositAmt;
-		return updatedbalance;
+		double updatedBalance = this->initialBalance + depositAmt;
+		initialBalance = updatedBalance;
+		return updatedBalance;
 	}
 
 

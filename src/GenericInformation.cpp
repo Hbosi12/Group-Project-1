@@ -5,8 +5,9 @@ bool testGenericClass()
 {
 	string fullName;
 	int accountId;
-	int totalMonthlyAmtOfDeposits = 0;
-	double depositAmt;
+	int totalMonthlyAmtOfDeposits;
+
+	GenericInformation InitialStateOfAccount;
 
 	//Delete this this stuff. This is just to test to make sure the class works!
 	cout << "Working Class -- Generic Information" << endl;
@@ -19,20 +20,16 @@ bool testGenericClass()
 	cin >> accountId;
 
 	cout << "Please enter the total amount of monthly deposits: ";
-	cin >> totalMonthlyAmtOfDeposits;
+	cin >> InitialStateOfAccount.totalAmtOfMonthlyDeposit;
 
-	GenericInformation InitialStateOfAccount;
 	InitialStateOfAccount.getInitialBalance();
-	GenericInformation InitDepositAmt;
+	totalMonthlyAmtOfDeposits = InitialStateOfAccount.totalAmtOfMonthlyDeposit;
 
 	for(int i = 0; i < totalMonthlyAmtOfDeposits; i++)
 	{
-		do{
 			cout << "Please enter amount to deposit: ";
-			cin >> depositAmt;
-			InitDepositAmt.getUpdatedBalanceWithDeposits();
-		}
-		while(i < InitDepositAmt.getUpdatedBalanceWithDeposits());
+			cin >> InitialStateOfAccount.depositAmt;
+			InitialStateOfAccount.getUpdatedBalanceWithDeposits();
 	}
 
 	return false;
