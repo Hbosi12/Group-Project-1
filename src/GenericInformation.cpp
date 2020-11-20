@@ -6,6 +6,7 @@ bool testGenericClass()
 	string fullName;
 	int accountId;
 	int totalMonthlyAmtOfDeposits;
+	int totalMonthlyAmtOfWithdraws;
 
 	GenericInformation InitialStateOfAccount;
 
@@ -23,6 +24,11 @@ bool testGenericClass()
 	cin >> totalMonthlyAmtOfDeposits;
 
 	InitialStateOfAccount.setDepositInAccount(totalMonthlyAmtOfDeposits);
+
+	cout << "Please enter how many withdraws were made this month:  ";
+	cin >> totalMonthlyAmtOfWithdraws;
+
+	InitialStateOfAccount.setWithdrawFromAccount(totalMonthlyAmtOfWithdraws);
 
 
 
