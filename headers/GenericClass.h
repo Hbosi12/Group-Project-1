@@ -1,55 +1,51 @@
 #ifndef GenericClass_h
 #define GenericClass_h
-
+using namespace std;
 bool testGenericClass();
 
 class GenericInformation
 {
-public:
+private:
 	int initialBalance;
 	float annualInterestRate;
 	int totalAmtOfMonthlyDeposit;
-	double depositAmt;
 
+public:
 	GenericInformation()
 	{
 		this->initialBalance = 0;
 		this->annualInterestRate = 0.061f;
-		this->totalAmtOfMonthlyDeposit = totalAmtOfMonthlyDeposit;
-		this->depositAmt = 0.00;
+		this->totalAmtOfMonthlyDeposit = 0;
 	}
-	GenericInformation(int initialBalance, double annualInterestRate, double depositAmt)
+
+	GenericInformation(int initialBalance, double annualInterestRate)
 	{
 		this->initialBalance = 0;
-		this->annualInterestRate = 0.06;
-		this->totalAmtOfMonthlyDeposit = totalAmtOfMonthlyDeposit;
-		this->depositAmt = depositAmt;
+		this->annualInterestRate = 0.061f;
+		this->totalAmtOfMonthlyDeposit = 0;
 	}
 
-	int getTotalAmtOfMonthlyDeposit(double)
+	double setDepositInAccount(int totalMonthlyAmtOfDeposits)
 	{
-		return this->totalAmtOfMonthlyDeposit;
+		double deposit = 0;
+		double newBalance = 0.0;
+		this->totalAmtOfMonthlyDeposit = totalMonthlyAmtOfDeposits;
+		for(int i = 0; i < this->totalAmtOfMonthlyDeposit; i++)
+		{
+				cout << "Please enter amount to deposit: ";
+				cin >> deposit;
+
+				newBalance = newBalance + deposit;
+		}
+		return newBalance;
 	}
 
-	int getInitialBalance()
+	double setWithdrawFromAccount()
 	{
-		return this->initialBalance;
-	}
 
-	double getAnnualInterestRate()
-	{
-		return this->annualInterestRate;
+		return 0;
 	}
-
-	double getUpdatedBalanceWithDeposits()
-	{
-		double updatedBalance = this->initialBalance + depositAmt;
-		initialBalance = updatedBalance;
-		return updatedBalance;
-	}
-
 
 
 };
-
 #endif

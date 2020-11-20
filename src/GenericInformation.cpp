@@ -20,17 +20,11 @@ bool testGenericClass()
 	cin >> accountId;
 
 	cout << "Please enter the total amount of monthly deposits: ";
-	cin >> InitialStateOfAccount.totalAmtOfMonthlyDeposit;
+	cin >> totalMonthlyAmtOfDeposits;
 
-	InitialStateOfAccount.getInitialBalance();
-	totalMonthlyAmtOfDeposits = InitialStateOfAccount.totalAmtOfMonthlyDeposit;
+	InitialStateOfAccount.setDepositInAccount(totalMonthlyAmtOfDeposits);
 
-	for(int i = 0; i < totalMonthlyAmtOfDeposits; i++)
-	{
-			cout << "Please enter amount to deposit: ";
-			cin >> InitialStateOfAccount.depositAmt;
-			InitialStateOfAccount.getUpdatedBalanceWithDeposits();
-	}
+
 
 	return false;
 }
