@@ -7,10 +7,11 @@ bool testGenericClass()
 	int accountId;
 	int totalMonthlyAmtOfDeposits;
 	int totalMonthlyAmtOfWithdraws;
+	double depositAmt;
+	double withdrawAmt;
 
-	GenericInformation InitialStateOfAccount;
+	GenericInformation AccountFinances(0, 0.06);
 
-	//Delete this this stuff. This is just to test to make sure the class works!
 	cout << "Working Class -- Generic Information" << endl;
 	cout << "Bank account information required"<< endl;
 
@@ -23,13 +24,25 @@ bool testGenericClass()
 	cout << "Please enter the total amount of monthly deposits: ";
 	cin >> totalMonthlyAmtOfDeposits;
 
-	InitialStateOfAccount.setDepositInAccount(totalMonthlyAmtOfDeposits);
+	for(int i = 0; i < totalMonthlyAmtOfDeposits; i++)
+	{
+		cout << "Please enter deposit amount: ";
+		cin >> depositAmt;
+		AccountFinances.deposit(depositAmt);
+	}
 
 	cout << "Please enter how many withdraws were made this month:  ";
 	cin >> totalMonthlyAmtOfWithdraws;
 
-	InitialStateOfAccount.setWithdrawFromAccount(totalMonthlyAmtOfWithdraws);
+	for(int i = 0; i < totalMonthlyAmtOfWithdraws; i++)
+	{
+		cout << "Please enter deposit amount: ";
+		cin >> withdrawAmt;
+		AccountFinances.withdraw(withdrawAmt);
+	}
 
+	AccountFinances.calcInt();
+	AccountFinances.monthlyProc();
 
 
 	return false;

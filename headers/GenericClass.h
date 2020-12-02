@@ -1,63 +1,60 @@
 #ifndef GenericClass_h
 #define GenericClass_h
+#define MONTHS_IN_YEAR 12
 using namespace std;
 bool testGenericClass();
 
 class GenericInformation
 {
 private:
-	int initialBalance;
-	float annualInterestRate;
-	int totalAmtOfMonthlyDeposit;
-	int totalAmtOfMonthlyWithdraw;
-	double newBalance = 0.0;
+	double balance;
+	int numberOfDepositsThisMonth;
+	int numberOfWithdrawals;
+	double annualInterestRate;
+	double monthlyServiceCharges;
 
 public:
-	GenericInformation()
+	GenericInformation(double balance, double annualInterestRate)
 	{
-		this->initialBalance = 0;
-		this->annualInterestRate = 0.061f;
-		this->totalAmtOfMonthlyDeposit = 0;
-		this->totalAmtOfMonthlyWithdraw = 0;
+		this->balance = balance;
+		this->numberOfDepositsThisMonth = 0;
+		this->numberOfWithdrawals = 0;
+		this->annualInterestRate = annualInterestRate;
+		this->monthlyServiceCharges = 0.01;
 	}
 
-	GenericInformation(int initialBalance, double annualInterestRate)
+	virtual ~GenericInformation()
 	{
-		this->initialBalance = 0;
-		this->annualInterestRate = 0.061f;
-		this->totalAmtOfMonthlyDeposit = 0;
-		this->totalAmtOfMonthlyWithdraw = 0;
+
 	}
 
-	double setDepositInAccount(int totalMonthlyAmtOfDeposits)
+	virtual void deposit (double depositAmt)
 	{
-		double deposit = 0;
-		this->initialBalance = deposit;
-		this->totalAmtOfMonthlyDeposit = totalMonthlyAmtOfDeposits;
-		for(int i = 0; i < this->totalAmtOfMonthlyDeposit; i++)
-		{
-				cout << "Please enter amount to deposit: ";
-				cin >> deposit;
-
-				newBalance = newBalance + deposit;
-		}
-		return newBalance;
+		this->balance = this->balance + depositAmt;
+		numberOfDepositsThisMonth++;
 	}
 
-	double setWithdrawFromAccount(int totalMonthlyAmtOfWithdraws)
+	virtual void withdraw (double withdrawAmt)
 	{
-		double withdraw = 0;
-		this->totalAmtOfMonthlyWithdraw = totalMonthlyAmtOfWithdraws;
-		for(int i = 0; i < this->totalAmtOfMonthlyWithdraw; i++)
-		{
-				cout << "Please enter amount to deposit: ";
-				cin >> withdraw;
-
-				newBalance = newBalance - withdraw;
-		}
-		return newBalance;
+		this->balance = this->balance - withdrawAmt;
+		numberOfWithdrawals++;
 	}
 
+	virtual void calcInt ()
+	{
+		double monthlyInterestRate = this->annualInterestRate / MONTHS_IN_YEAR;
+		double monthlyInterest = this->balance * monthlyInterestRate;
+		double interestRateBalance = this->balance + monthlyInterest;
+	}
+
+	virtual void monthlyProc ()
+	{
+		this->balance = this->balance - this->monthlyServiceCharges;
+		calcInt();
+		numberOfWithdrawals = 0;
+		numberOfDepositsThisMonth = 0;
+		this->monthlyServiceCharges = 0;
+	}
 
 };
 #endif
